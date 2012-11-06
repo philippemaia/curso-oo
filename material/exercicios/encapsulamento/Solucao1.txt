@@ -1,0 +1,120 @@
+public class AreaCalculation2 {
+
+	public static void main(String[] args) {
+		new Shapes(args);
+	}
+	
+	static class Shapes {
+
+		public Shapes(String[] args) {
+			if (args.length==1) {
+				Circle c = new Circle(args);
+				c.printShapeName();
+				c.printAreaValue();
+			}
+			if (args.length==3) {
+				Triangle t = new Triangle(args);
+				t.printShapeName();
+				t.printAreaValue();
+			}
+			if (args.length==4) {
+				Quad q = new Quad(args);
+				q.printShapeName();
+				q.printAreaValue();
+			}		
+		}
+		
+		static class Circle {
+			double radius;
+			boolean isValid=true;
+			
+			public Circle(String[] args) {
+				radius=Double.parseDouble(args[0]);			
+				if (radius==0) isValid=false;
+			}
+
+			public void printAreaValue() {			
+				if (isValid) {
+					System.out.println("A area do circulo eh "+Math.PI*radius*radius);
+				} else {
+					System.out.println("Um dos lados eh invalido, tenta de novo!");
+				}
+			}
+
+			public void printShapeName() {
+				if (isValid) {
+					System.out.println("Sou um circulo!");	
+				} else {
+					System.out.println("Um dos lados eh invalido, tenta de novo!");				
+				}		
+			}
+		}
+		
+		static class Triangle {
+			double a,b,c;
+			boolean isRet=false;
+			boolean isValid=true;
+			
+			public Triangle(String[] args) {
+				a=Double.parseDouble(args[0]);
+				b=Double.parseDouble(args[1]);
+				c=Double.parseDouble(args[2]);
+				
+				if (a==0||b==0||c==0) isValid=false;
+				if (c*c==a*a+b*b) isRet=true;
+			}
+			
+			public void printAreaValue() {		
+				if (isValid) {
+					double semiPerimeter = (a+b+c)/2; 
+					System.out.println("\nA area do triangulo e "+ Math.sqrt(semiPerimeter*(semiPerimeter-a)*(semiPerimeter-b)*(semiPerimeter-c)));
+				}
+			}
+
+			public void printShapeName() {
+				if (isValid) {
+					if (isRet) {
+						System.out.println("Sou um Triangulo Retangulo!");
+					} else {
+						System.out.println("Sou um Triangulo!");
+					}
+				} else {
+					System.out.println("Um dos lados eh invalido, tenta de novo!");
+				}
+			}		
+		}
+		
+		static class Quad {
+			double a,b,c,d;
+			boolean isSquare=false;
+			boolean isValid=true;
+			
+			public Quad(String[] args) {
+				a=Double.parseDouble(args[0]);
+				b=Double.parseDouble(args[1]);
+				c=Double.parseDouble(args[2]);
+				d=Double.parseDouble(args[3]);
+				if (a==0||b==0||c==0 || d==0) isValid=false;
+				if (a==b && b==c) isSquare=true;
+
+			}
+			public void printAreaValue() {		
+				if (isValid) {
+					System.out.println("\nA area do quadilatero eh "+ a*b);
+				}
+			}
+
+			public void printShapeName() {
+				if (isValid) {
+					if (isSquare) {
+						System.out.println("Sou um Quadrado!");
+					} else {
+						System.out.println("Sou um Retangulo!");
+					}
+				} else {
+					System.out.println("Um dos lados eh invalido, tenta de novo!");
+				}
+			}		
+			
+		}
+	}
