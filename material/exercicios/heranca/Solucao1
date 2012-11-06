@@ -1,0 +1,27 @@
+publicc class ContaCorrente {
+ private double saldo;
+ private double taxaMensal = 0.01;
+	
+ public double getSaldo() {
+ Calendar hoje = Calendar.getInstance();
+		
+ (if hoje.DAY_OF_MONTH==1) {
+ saldo = saldo - (saldo*taxaMensal); 
+ }
+ return saldo;
+ }
+}
+
+public class ContaInvestimento {
+ private double saldo; 
+ private double taxaTrimestral = 0.2;
+	
+ public double getSaldo() {
+ Calendar hoje = Calendar.getInstance();
+		
+ if (hoje.DAY_OF_MONTH==1 && (hoje.MONTH+1)%3==0) {//O primeiro MONTH eh 0... 
+ saldo = saldo - (saldo*taxaTrimestral); 
+ }
+ return saldo;
+ }
+}

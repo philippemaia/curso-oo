@@ -1,0 +1,26 @@
+public class ContaBancaria{
+ protected double saldo;
+ protected double taxa = 0;
+ protected Calendar hoje = Calendar.getInstance();
+	
+ public double getSaldo() {
+ return saldo - (saldo*taxa);
+ }
+}
+
+public class ContaCorrente extends ContaBancaria {
+ public ContaCorrente(double taxaMensal) {
+ (if hoje.DAY_OF_MONTH == 1) {
+ taxa = taxaMensal;
+ }
+ }
+}
+
+public class ContaInvestimento extends ContaBancaria {
+ public ContaInvestimento(double taxaTrimestral) {
+ if (hoje.DAY_OF_MONTH==1 && (hoje.MONTH+1)%3==0) {
+ taxa = taxaTrimestral; 
+ }
+ }
+}
+
